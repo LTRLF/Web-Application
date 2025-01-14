@@ -4,7 +4,149 @@
     <body>
         <div id="maincontainer"></div>
         <script>
+            // Exercise 04
+            const heading = document.createElement("h2");
+            heading.innerText = "Exercise 04: JavaScript&DOM";
+            // Append to body:
+            document.getElementById("maincontainer").appendChild(heading);
 
+            //div button
+            const div1 = document.createElement("div")
+            div1.id = "div1"
+            div1.style.height = "15px"
+            //Time button
+            let w;
+            let bgColors = ["red", "blue", "green", "yellow", "orange", "purple"];
+            let textColors = ["white", "white", "white", "black", "white", "white"];
+            let i = 0;
+            const button = document.createElement("button");
+
+
+            function startWorker() {
+                //check worker
+                if (typeof Worker !== "undefined") {
+                    if (typeof w == "undefined") {
+                        w = new Worker("workers.js");
+                    }
+                    w.onmessage = function (event) {
+                        button.innerText = event.data;
+                        button.style.position = "fixed";
+                        button.style.top = "0";
+                        button.style.right = "0";
+                        button.style.backgroundColor = bgColors[i % 6];
+                        button.style.color = textColors[i % 6];
+                        i++;
+                    };
+                
+                    button.onclick = stopWorker;
+                } 
+                else {
+                    button.innerText =
+                        "Sorry, your browser does not support Web Workers...";
+                }
+            }
+
+            function stopWorker() {
+                w.terminate();
+                w = undefined;
+                button.style.position = "relative";
+                button.onclick = startWorker;
+            }
+
+            button.innerText = "Click me to display Date and Time";
+            button.onclick = startWorker;
+            div1.appendChild(button);
+            document.getElementById("maincontainer").appendChild(div1);
+
+
+            //div Personal Info
+            const div2 = document.createElement("div");
+            div2.id = "div2"
+            //Personal info click
+            const personal = document.createElement("a");
+            personal.href = "#"
+            personal.innerText = "Personal Info";
+            div2.style.marginTop = "15px"
+
+            function clickInfo(){
+                if(info.hasChildNodes()){
+                    info.innerHTML = ''
+                }
+                else{
+                    info.appendChild(detail1);
+                    info.appendChild(detail2);
+                    info.appendChild(detail3);
+                }
+            }
+            personal.onclick = clickInfo
+
+            let info = document.createElement("ul");
+            let detail1 = document.createElement("li");
+            detail1.innerText = "Issaree Nissyan, 66010942"
+            let detail2 = document.createElement("li");
+            detail2.innerText = "Web Application & Development"
+            let detail3 = document.createElement("li");
+            detail3.innerText = "Semester2"
+
+            document.getElementById("maincontainer").appendChild(div2);
+            div2.appendChild(personal);
+            div2.appendChild(info)
+
+            //Snapshots
+            const secondHeading = document.createElement("h1");
+            secondHeading.innerText = "Snapshots";
+            document.getElementById("maincontainer").appendChild(secondHeading);
+
+            //list
+            const lists = document.createElement("ul");
+            lists.id = "lists"
+
+            function links(image_link) {
+                document.getElementById("pic").src = image_link
+            }
+
+            //Firework
+            const firework = document.createElement("li");
+            const firework1 = document.createElement("a");
+            firework1.innerText = "Fireworks";
+            firework1.href = "#";
+            firework.appendChild(firework1);
+            firework.onclick = function () { links("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTytVOsS1v5bTWBFirqgnFSl5sldNbdC6T4iw&s") };
+            //Crest
+            const crest = document.createElement("li");
+            const crest1 = document.createElement("a");
+            crest1.innerText = "Crest";
+            crest1.href = "#";
+            crest.appendChild(crest1);
+            crest.onclick = function () { links("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn5dB7dHNOZTK0P6U5bAYLcwlCxhNvYDY5Vg&s") };
+            //Action
+            const action = document.createElement("li");
+            const action1 = document.createElement("a");
+            action1.innerText = "Action";
+            action1.href = "#";
+            action.appendChild(action1);
+            action.onclick = function () { links("https://satishrao.in/wp-content/uploads/2014/11/action.jpg") };
+            //Buffalo
+            const buff = document.createElement("li");
+            const buff1 = document.createElement("a");
+            buff1.innerText = "Buffalo";
+            buff1.href = "#";
+            buff.appendChild(buff1);
+            buff.onclick = function () { links("https://www.awf.org/sites/default/files/styles/species_image/public/2020-04/SpeciesPage_AfricanBuffalo02_Challenges.jpg?h=29c6c1f6&itok=VHn68yL8") };
+            
+            //Append to body
+            document.getElementById("maincontainer").appendChild(lists);
+            lists.appendChild(firework);
+            lists.appendChild(crest);
+            lists.appendChild(action);
+            lists.appendChild(buff);
+
+            //image
+            const image = document.createElement("img");
+            image.id = "pic"
+            image.src = "https://www.westminster.ac.uk/sites/default/public-files/styles/panel_image_third_320px/public/general-images/epq-meme.jpg?itok=PQuo_m3s%20420w,%20/sites/default/public-files/styles/panel_image_1_4/public/general-images/epq-meme.jpg?itok=8sm6UBVy%20560w,%20/sites/default/public-files/styles/panel_image_1_2_768px_/public/general-images/epq-meme.jpg?itok=5b7ZyKpI%20800w"
+            image.style.maxHeight = "250px";
+            document.getElementById("maincontainer").appendChild(image);
         </script>
     </body>
 </html>
