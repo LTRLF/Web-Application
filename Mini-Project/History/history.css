@@ -1,0 +1,43 @@
+@import url("../src.css");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font-family: "Jost", sans-serif;
+  color: var(--chocolate-cosmos);
+  justify-content: center;
+  /* align-items: center; */
+  height: 100%;
+  width: 100%;
+}
+
+.page {
+  background-color: lightcyan;
+  margin-top: 60px;
+  /* margin: 20px; */
+  /* padding-left: 40px; */
+  display: flex;
+  flex-direction: column;
+}
+
+.containerStyle {
+  background-color: var(--cherry-blossom-pink);
+  display: flex;
+  /* align-items: flex-start; */
+  gap: 8px;
+  padding: 2rem;
+  margin: 5px;
+  align-self: center;
+  justify-content: center;
+  width: 80vw;
+}
+
+.contentStyle {
+    background-color: aqua;
+  flex-direction: column;
+  padding: 5px;
+  /* align-self: flex-start; */
+}
